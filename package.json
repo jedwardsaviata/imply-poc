@@ -5,6 +5,7 @@
     "cassandra-driver": "*",
     "coffee-script": "*",
     "lodash": "*",
+    "moment": "*",
     "pg": "*",
     "q": "*",
     "request": "*"
