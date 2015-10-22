@@ -1,0 +1,22 @@
+#master_0:
+master_1:
+  container_name: imply-druid-master-1
+  image: aviata/imply-base
+  ports:
+    - "8081" # Coordinator
+    - "8084" # Overlord
+  command:
+#data_0:
+data_1:
+  container_name: imply-druid-data-1
+  image: aviata/imply-base
+  ports:
+    - "8083" # Historical
+    - "8090" # Indexing Service
+#query_0:
+query_1:
+  container_name: imply-druid-query-1
+  image: aviata/imply-base
+  ports:
+    - "8082" # Broker
+    - "9095" # Bard

@@ -1,0 +1,24 @@
+zookeeper:
+  container_name: imply-poc-zookeeper
+  image: mesoscloud/zookeeper:3.4.6-ubuntu
+  environment:
+    - MYID=1
+    #- SERVERS=node-1,node-2,node-3
+  ports:
+    - "2181" # Client connections
+    - "2888" # Inter-node communication
+    - "3888" # Inter-node communication
+postgresql:
+  container_name: imply-poc-postgresql
+  image: postgresql:9.4
+  ports:
+    - "5432" # SQL connections
+cassandra:
+  container_name: imply-poc-cassandra
+  image: cassandra:2.2
+  ports:
+    - "7000" # Internode
+    - "7001" # Internode TLS
+    - "7199" # JMX
+    - "9160" # Thrift API
+    - "9042" # CQL native
