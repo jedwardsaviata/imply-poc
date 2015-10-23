@@ -1,8 +1,8 @@
-CREATE KEYSPACE druid
+CREATE KEYSPACE IF NOT EXISTS druid
   WITH replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }
 ;
 ---
-CREATE TABLE index_storage
+CREATE TABLE IF NOT EXISTS druid.index_storage
 (
   key text,
   chunk text,
@@ -12,7 +12,7 @@ CREATE TABLE index_storage
 WITH COMPACT STORAGE
 ;
 ---
-CREATE TABLE descriptor_storage
+CREATE TABLE IF NOT EXISTS druid.descriptor_storage
 (
   key varchar,
   lastModified timestamp,

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-./run-services.sh
-
 WD=`pwd`
 
 DOCKER_COMPOSE=`which docker-compose`
@@ -10,11 +8,9 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
-cd druid
+cd services
 $DOCKER_COMPOSE up -d
 cd $WD
 
-cd panoramix
-$DOCKER_COMPOSE up -d
-cd $WD
+./prepare-dbs.sh
 
