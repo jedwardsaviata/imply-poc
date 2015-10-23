@@ -1,7 +1,7 @@
 #master_0:
 master_1:
   container_name: imply-poc-druid-master-1
-  image: aviata/imply-druid
+  build: .
   command: bin/supervise -c conf/supervise/master-no-zk.conf
   expose:
     - "8081" # Coordinator
@@ -13,7 +13,7 @@ master_1:
 #data_0:
 data_1:
   container_name: imply-poc-druid-data-1
-  image: aviata/imply-druid
+  build: .
   command: bin/supervise -c conf/supervise/data.conf
   expose:
     - "8083" # Historical
@@ -26,7 +26,7 @@ data_1:
 #query_0:
 query_1:
   container_name: imply-poc-druid-query-1
-  image: aviata/imply-druid
+  build: .
   command: bin/supervise -c conf/supervise/query.conf
   expose:
     - "8082" # Broker
