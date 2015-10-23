@@ -2,14 +2,14 @@
 master_1:
   container_name: imply-poc-druid-master-1
   image: aviata/imply-base
-  command: bin/supervise -c conf/supervise/master-with-zk.conf
+  command: bin/supervise -c conf/supervise/master-no-zk.conf
   expose:
     - "8081" # Coordinator
     - "8084" # Overlord
-    - "2181" # Zookeeper Client connections
   external_links:
-    #- imply-poc-zookeeper:zookeeper
+    - imply-poc-cassandra:cassandra
     - imply-poc-postgresql:postgresql
+    - imply-poc-zookeeper:zookeeper
 #data_0:
 data_1:
   container_name: imply-poc-druid-data-1
@@ -17,11 +17,12 @@ data_1:
   command: bin/supervise -c conf/supervise/data.conf
   expose:
     - "8083" # Historical
+    - "8085" # Middle Manager
     - "8090" # Indexing Service
   external_links:
-    - imply-poc-druid-master-1:zookeeper
-    #- imply-poc-zookeeper:zookeeper
     - imply-poc-cassandra:cassandra
+    - imply-poc-postgresql:postgresql
+    - imply-poc-zookeeper:zookeeper
 #query_0:
 query_1:
   container_name: imply-poc-druid-query-1
@@ -32,5 +33,6 @@ query_1:
   ports:
     - "9095:9095" # Bard
   external_links:
-    - imply-poc-druid-master-1:zookeeper
-    #- imply-poc-zookeeper:zookeeper
+    - imply-poc-cassandra:cassandra
+    - imply-poc-postgresql:postgresql
+    - imply-poc-zookeeper:zookeeper

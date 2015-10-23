@@ -3,7 +3,7 @@ zookeeper:
   image: mesoscloud/zookeeper:3.4.6-ubuntu
   environment:
     - MYID=1
-    - SERVERS=node-1,node-2,node-3
+    #- SERVERS=node-1,node-2,node-3
   expose:
     - "2181" # Client connections
     - "2888" # Inter-node communication
@@ -11,6 +11,9 @@ zookeeper:
 postgresql:
   container_name: imply-poc-postgresql
   image: postgres:9.4
+  environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
   expose:
     - "5432" # SQL connections
 cassandra:
