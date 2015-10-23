@@ -11,17 +11,42 @@ request = require 'request'
 
 createDatasource = ->
   d = Q.defer()
-  request.post '/druid/v2/datasouces/aviata', (error, result) ->
+
+  dataSchema =
+    dataSource: "aviata"
+    parser:
+      type: "string"
+      parseSpec:
+        format: "json"
+        dimensionSpec:
+          dimensions: _(createRecord()).keys()
+        dimensionExclusions: [count]
+    metricSpec: [{type: "count", name: "count"}]
+
+  ioConfig =
+    TODO: "Follow the spec"
+
+  options =
+    method: "POST"
+    headers:
+      "Content-Type": "application/json"
+    body:
+      dataSchema: dataSchema
+      ioConfig: ioConfig
+      #tuningConfig:
+
+  request.post '/druid/v2/datasouces/aviata', (error, response, body) ->
     if error
       console.log "Error creating datasource 'aviata': #{error}\n#{error.stack}"
       d.reject error
     else
       console.log "Datasource 'aviata' created successfully."
       d.resolve()
+
   d.promise
 
 insertRecord = ->
-  request.post '', JSON.stringify(record), (error, result) ->
+  request.post '', JSON.stringify(record), (error, response, body) ->
     if error
       console.log "Error creating datasource 'aviata': #{error}\n#{error.stack}"
     else
@@ -41,6 +66,8 @@ createRecord = ->
     channel_1: Math.random()
     channel_2: Math.random()
     channel_3: Math.random()
+    count: 1
+  record
 
 createDatasource()
 .then ->
