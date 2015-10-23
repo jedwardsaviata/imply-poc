@@ -1,6 +1,6 @@
 FROM aviata/imply-base
 
-COPY common.runtime.properties /imply/imply-${IMPLY_VERSION}/conf/druid/_common/common.runtime.properties
+COPY conf/druid /imply/imply-${IMPLY_VERSION}/conf/druid
 
 EXPOSE 8080 8081 8082 8083 8084 8085 8090 9095
 # 8080 - Druid Port
