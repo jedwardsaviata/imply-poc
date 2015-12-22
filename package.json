@@ -2,13 +2,13 @@
   "name": "imply-poc",
   "version": "1.0.0",
   "dependencies": {
-    "cassandra-driver": "*",
-    "coffee-script": "*",
-    "lodash": "*",
-    "moment": "*",
-    "pg": "*",
-    "q": "*",
-    "request": "*"
+    "cassandra-driver": "^3.0",
+    "coffee-script": "^1.10",
+    "lodash": "^3.10",
+    "moment": "^2.10",
+    "pg": "^4.4",
+    "q": "^1.4",
+    "request": "^2.67"
   },
   "scripts": {
     "load-data": "./node_modules/coffee-script/bin/coffee load-data.coffee"
